@@ -1,0 +1,44 @@
+
+We are surrounded by bold claims, and huge investments that suggest that machine learning for health is going to transform care. [@bunz2021] Predictors of shock or acute kidney injury have been rigorously developed using cutting edge methods from well funded and highly successful teams. [@hyland2020; @tomasev2019] Governments have deployed enormous resources to realising value from the digitisation of healthcare.[@nhsx2022] There is also no doubt that health care delivery is imperfect, and human decision making is variable and not always reaching the quality standards we aspire to. [@braithwaite2020] The lack of a mature digital infrastructure has been a major barrier until recently, but this is no longer a valid excuse especially in well funded academic medical centres. 
+
+ML4H finds itself in Gartner's trough of disillusionment. [@steinert2010] This is unfortunate because the premise that augmenting human decision making with timely and insights from data is correct. The problem is that ML4H has not learned the lessons that translational medicine delivered to basic science over the last two decades. [@woolf2008] The ML4H innovations that are published in high impact journals have in reality not left the laboratory bench, and there is no infrastructure to see them deployed and managed by healthcare providers. They carry the full "hidden technical debt" of machine learning.[@sculley2015] The analogy with drug discovery is useful because we need a corresponding professionalisation of ML4H in both _development_ and _deployment_. 
+
+Algorithms that cross the AI chasm are normally embedded in medical devices or isolated digital workflows (medical imaging). Here the deployment environment is either fully-specified (devices) or static and self-contained (imaging). The ambition for ML4H is broader but requires a strategy to integrate with the full Electronic Health Record (EHR) with multiple users and continuously updating and evolving data. [@vaitla2020a] Hospitals will require infrastructure that manages algorithms with the same regard that is given to medicines (pharmacy) and machines (medical physics).
+
+We describe here a living sketch of this future based on our own local experiences in a  newly digitally mature institution that has embraced the potential of ML4H. Our outline is for an academic health science centre that sees itself involved in both the development and the deployment of algorithms. 
+
+We argue that the following five pillars are necessary for success, and provide examples of our own work toward each.
+
+### Real world development requires more than real world data
+
+Because ML4H interventions are not drugs or devices that have their own physical existence, the algorithm cannot be effectively developed away from the target environment. Code-to-data rather than data-to-code requires a sandboxed development environment within the hospital. The sandbox protects clinical and operational systems whilst updating data at the same cadence as the work of  the bedside decision-maker. Current solutions are incomplete. Reporting data warehouses can provide data for training but are rarely live. FHIR can serve data for live predictions but not at scale for training, and FHIR implementations are incomplete.<[@2018c]> Combining the two places means that teams must maintain separate data pipelines increasing cost and reducing efficiency. Until these two solutions converge, we outline our local implementation built using HL7v2 and SQL-as-an-API philosophy that means features for training and prediction are served from the same pipeline using the same infrastructure and tools. 
+
+### We must embrace and extend the field of ML-Ops.
+
+The model artefact in a real-world ML system is a tiny fraction of the whole. [@sculley2015] Unlike traditional software artefacts, the quality of an ML model is a reflection of the quality of the underlying data. [@renggli2021] At organisations with mature ML deployments, such as Netflix, Uber, AirBnB, practises have evolved to ensure high quality data is continuously provided to their models. [@hermann2017] These have collectively become known as MLOps and includes model and hyper-parameter versioning, continuous monitoring for data and concept drift, iterative model development and fail-safes triggered by model drift. MLOps is quickly becoming an important enabler of successful ML deployment across many industries. However, in the high-stakes healthcare environment, data quality issues are safety issues, and our MLOps  implementation goes further to tackle additional requirements like regulatory approval and information governance.[@sambasivan2021]
+
+### Responsible AI
+TODO: poly-pharmacy to poly-algorithm
+
+Model recommendations always carry unintended consequences since the models only learn from a digital representation of the world that cannot encode moral or ethical standards. Some will be harmful because unmeasured confounders lead to incorrect conclusions (banning matches will reduce smoking related lung cancer).[@jeter2019] Some will be harmful because the training data is simply incomplete. This is largely responsible for the ethnicity bias in imaging processing.[@ghassemi2021] Both of these risks will diminish with experience and better digitisation. 
+
+The new challenge will be managing the impact of an AI recommendation on the model's own learning. Models that modify clinician's behaviour alter the data that will go on to update the next iteration of that same model. In some circumstances, 'naive updating' of the model will lead to a convergence where the model just predicts its own effect.[@liley2021]
+
+### Implementation science
+
+Unlike medications, algorithms have no external existence and can only impact health by influencing the behaviour of clinicians and patients. This corresponds to the second (T2) arm of translational medicine: implementation science.[@woolf2008] A well designed, safe, and responsible AI algorithm may still be ineffective if it does reach a modifiable target of the clinical pathway.[@the2021] This field will need a multi-disciplinary approach that involves human-computer interaction, behavioural science, and qualitative analysis.[@sendak2020] Crucially, it will be most effective when development is done online and in a real-world environment. This means that a handful of key institutions must become design 'laboratories' where rapid prototyping (build-test-learn) at the bedside crafts the deployment pathway for effectiveness rather than just efficacy.    
+
+### Continuous evaluation
+
+We will need to move beyond simple 'silent runs' of ML models to understand their worth. Standalone parallel arm randomised controlled trials may be sometimes necessary but are not sustainable across the breadth of interventions where ML4H might return value. Instead, we should leverage the inherently digital nature of our field to build appropriate and continuous forms of evaluation. Key outcomes can be monitored through the EHRS as the system is implemented, and appropriate causal inference methods brought to bear (e.g. interrupted time series analysis) to estimate treatment effects. In many cases, the algorithm will be operating in a field with existing variation in practice.[@braithwaite2020] A portion of this variation represents substandard care, but another portion represents genuine clinical equipoise.[@london2018] This latter should be the target domain of a digital learning health care system that delivers point of care randomisation.[forthcoming] Algorithimic recommendations can then be evaluated rigorously and efficiently. This approach will require innovations in trial design (e.g. cohort embedded RCTs), patient and public engagement, and models of consent, but these are within our gift.
+
+## Conclusion
+
+Previous work cites issues such as restricted access to data, data quality and clinician distrust of black box algorithms.[@ghassemi2021; @2020] Others cite the need for new approaches to evaluating ML algorithms. 
+
+Focus on these narrow technical issues obscures deeper issues around the processes, infrastructure and incentives to support healthcare ML research. There are important conceptual shifts that require integration of new expertise into the development team. Failure to recognise these issues leads to unrealistic expectations about the time and resources needed to develop a clinically-useful algorithm and lack of clarity about how to conceptualise and evaluate success. The situation is further exacerbated by digital health evaluation frameworks which give the impression that all the questions of relevance can be answered in parallel.
+
+By laying out a framework for describing the stages of algorithm development, we hope to create a common language that research funders, programme directors and ML researchers can use to support discussions around strategic investment in healthcare ML research and development.
+ 
+
+
