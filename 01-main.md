@@ -1,3 +1,4 @@
+## Introduction
 
 We are surrounded by bold claims, and huge investments that suggest that machine learning for health is going to transform care. [@bunz2021] Predictors of shock or acute kidney injury have been rigorously developed using cutting edge methods from well funded and highly successful teams. [@hyland2020; @tomasev2019] Governments have deployed enormous resources to realising value from the digitisation of healthcare.[@nhsx2022] There is also no doubt that health care delivery is imperfect, and human decision making is variable and not always reaching the quality standards we aspire to. [@braithwaite2020] The lack of a mature digital infrastructure has been a major barrier until recently, but this is no longer a valid excuse especially in well funded academic medical centres. 
 
