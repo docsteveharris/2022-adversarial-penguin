@@ -1,2 +1,3 @@
 *.plist
 *.sublime-workspace
+*.DS_Store
