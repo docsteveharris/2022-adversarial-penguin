@@ -63,9 +63,9 @@ In addition to the feature store, FlowEHR provides an auditable model store for 
 
 ## Figures
 Figure EMAP summary
-![](emap-summary-emap-summary.png)
+![](figs/emap.png)
 Figure FlowEHR
-![](DraggedImage.png)
+![](figs/flowehr.png)
 
 [^1]:	A typical set-up would see the team run a Jupyter Lab server within a docker container on that machine with shared file access to permit collaboration between team members. The ML4H researcher would work from this environment using separately managed credential to access live and static data stores. An application developer would orchestrate dockerised applications as needed to support the researcher. These might include web applications to return the model results directly to the clinical team for evaluation, or a services that would provide a suitable API for the results to be called from the EHR. This delegated responsibility strikes a balance between security, and a responsive development environment. 
 
