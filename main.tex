@@ -66,7 +66,15 @@ $^{4}$Digital Healthcare, University College London Hospital, London, UK   }
  
 \end{abstract}
 
-\markdownInput{01-main.md}
+% \markdownInput{01-main.md}
+\markdownInput{01-intro.md}
+\markdownInput{02-real-world-development.md}
+\markdownInput{03-ml-ops.md}
+\markdownInput{04-responsible-ai.md}
+\markdownInput{05-implementation.md}
+\markdownInput{06-continuous-evaluation.md}
+\markdownInput{08-discussion.md}
+
 
 
 
@@ -105,7 +113,9 @@ The views expressed in this publication are those of the author(s) and not neces
 \begin{center}
 \includegraphics[width=10cm]{figs/emap.png}% This is a *.eps file
 \end{center}
-\caption{ Enter the caption for your figure here.  Repeat as  necessary for each of your figures}\label{fig:1}
+\caption{ 
+Our real-world development is performed on the  Experimental Medicine Application Platform (EMAP). EMAP is a clinical laboratory within which ML4H researchers can iteratively build, test and gather feedback from the bedside. It unifies the data and the tools for off-line and online development of ML4H models. In brief, EMAP builds a patient orientated SQL database from HL7 version 2 (HL7v2) messages that are being exchanged between hospital systems. HL7v2 messages are ubiquitous in health care, and the \textit{de facto} standard for internal communication.
+}\label{fig:1}
 \end{figure}
 
 
@@ -113,12 +123,18 @@ The views expressed in this publication are those of the author(s) and not neces
 \begin{center}
 \includegraphics[width=15cm]{figs/flowehr.png}
 \end{center}
-\caption{This is a figure with sub figures, \textbf{(A)} is one logo, \textbf{(B)} is a different logo.}\label{fig:2}
+\caption{
+Our ML-Ops platform is called FlowEHR. Moving from left to right across the figure, the system monitors raw input data including checks for distribution shift, builds features with testable and quality controlled code, makes those features available to for both training and predictions to avoid train/serve skew, and maintains an auditable and monitored model repository.
+}\label{fig:2}
 \end{figure}
 
 %%% If you are submitting a figure with subfigures please combine these into one image file with part labels integrated.
 %%% If you don't add the figures in the LaTeX files, please upload them when submitting the article.
 %%% Frontiers will add the figures at the end of the provisional pdf automatically
 %%% The use of LaTeX coding to draw Diagrams/Figures/Structures should be avoided. They should be external callouts including graphics.
+
+
+\section*{Electronic Supplementary Material}
+\markdownInput{95-supplementary-material.md}
 
 \end{document}
