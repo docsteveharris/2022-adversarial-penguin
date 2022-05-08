@@ -1,35 +1,35 @@
-## EMAP design principles
+# EMAP design principles
 Our real-world development is performed on the  Experimental Medicine Application Platform (EMAP). EMAP is a clinical laboratory within which ML4H researchers can iteratively build, test and gather feedback from the bedside. It unifies the data and the tools for off-line and online development of ML4H models.
 
-### Live data using HL7v2
+## Live data using HL7v2
 We used HL7 (version 2.3+) rather than FHIR as our primary means of access to the EHR because the standard is open, the messages are real time, and the infrastructure already exists even in digitally immature hospitals. A similar approach was used to build a statewide clinical data warehouse in South Carolina spanning multiple institutions and merging data for millions of patients.[@turley2016]
 
 Within a hospital, rather than multiple direct pair-wise connections between each system, HL7v2 messages are routed through an integration or interface engine.[@jacob2008] Integration engines are a core component in most if not all digital health systems. They orchestrate message routing from source to one or more consumers, they manage the message queues, and because HL7v2 standards are loose they often translate messages to ensure compatibility between systems. 
 
-### Sandboxed
+## Sandboxed
 This is advantageous because it creates a single point of contact, and reduces installation and maintenance costs. Moreover, because messages were pushed (rather than pulled) from the live clinical system, the work load remains under the control of the source system. Downstream applications are unable to escalate demand to upstream systems. This last point means there is minimal additional burden on clinical systems (the message are already being generated) thus reducing deployment risk.
 
-### Code-to-data
+## Code-to-data
 Live data brings an orthogonal but important secondary benefit in that it inverts the data-to-code paradigm.[@guinney2018] Integrating development and deployment mandates a platform within the same security envelope as the EHR. This code-to-data approach avoids many of the well known challenges of data sharing that troubles health data research.[@powles2017] Instead, developers come to work with data under the same controls and protections as the original record.
 
 We argue that this approach appropriately balances risks and benefits. In particular, whilst there is greater risk delegating responsibility to individuals, this is mitigated through the benefits of a responsive development environment. Rather than extracting and attempting to anonymise health data, and moving these data to externally located researchers, we bring the researchers to the data. Enabling 'code to data' rather than relying on 'data to code' allows us to draw on all of the 'Five Safes': safe data, safe people, safe settings, safe projects, and safe outputs.[@ritchie2017]
 
 Both EMAP databases and the development environment are hosted within the hospital ﬁrewall (private cloud). Users are under the same governance process as clinical and other hospital staﬀ. There is no external access. Authorised developers may work with access to PII for application deployment but research teams work with a de-identiﬁed. Deployed applications integrate the PII with the ML4H model and display predictions to clinical teams in context.
 
-### Developer ergonomics
+## Developer ergonomics
 Our third requirement focuses on developer ergonomics. A 'code-to-data' approach is not feasible if the necessary tooling is not available in the health care environment. This means providing parity in the development environment with regards to tools and workflow. 
 
-#### Application Development Environment
+### Application Development Environment
 Whilst it is possible to deploy a static set of analytic and development tools with relative ease (i.e. a standalone statistical analysis package), this does not support a modern data science or application development workflow. Such workflows assume free access to install new tools and update dependencies, to collaborate through version control platforms, and to perform continuous integration testing using external infrastructure. 
 
 We provide a Linux based virtual machine hosted within the hospital digital environment. The user is not given root access (i.e. full control) but the machine is adapted to support the deployment of applications hosted within docker containers.  Network access, filtered by an HTTP proxy, permits the build and orchestration of docker containers. Version control is available locally through a git server, and appropriately certified users are able to use external version control tools.  Filters automatically exclude files identified as likely to contain data, and private repositories are preferred by default. Applications are able to verify user identity against the hospital's active directory so that web applications can be authenticated using existing credentials.[^1]
 
-#### SQL: unified interface for as wide an audience as possible
+### SQL: unified interface for as wide an audience as possible
 Most researchers expect to access data as flat tables, or from a relational database. The learning curve for using FHIR is not steep, but it is not designed for bulk queries nor is it able to handle ad-hoc joins or aggregation.[@2018c] Flat (bulk) FHIR is not mature, nor designed for live interactions.[@2021b] This means that training and prediction, and development and deployment would require separate workflows, skills and potentially staffing. We therefore specified a single data source for both training and prediction, and chose SQL as the interface with the widest group of users in health care. This has the added benefit of the platform being accessible to business intelligence and audit teams as well as ML4H developers.
 
 [^1]:	A typical set-up would see the team run a Jupyter Lab server within a docker container on that machine with shared file access to permit collaboration between team members. The ML4H researcher would work from this environment using separately managed credential to access live and static data stores. An application developer would orchestrate dockerised applications as needed to support the researcher. These might include web applications to return the model results directly to the clinical team for evaluation, or a services that would provide a suitable API for the results to be called from the EHR. This delegated responsibility strikes a balance between security, and a responsive development environment. 
 
-## ML-0ps design principles
+# ML-0ps design principles
 Our ML-Ops platform is named FlowEHR: a working prototype supports the deployment and maintenance of a handful of local operational models.[@King2022.03.07.22271999] FlowEHR supports the ingestion of live data from EMAP (above) alongside retrospective data from reporting data warehouses. FHIR will be supported once generally available. We augment the platform with external data sources (e.g. to provide population level priors or regional or national COVID data). The raw input data is automatically monitored and compared against expected distributions to defend against data drift and ensure first line data quality.
 
 FlowEHR also implements an emerging ML architectural pattern known as a _feature store_. Although popularised by hyper-scale technology giants, the feature store is not about data volume but rather offers a solution to data consistency and data reuse problems, both of which act as major barriers to collaboration and iterative model improvement. The feature store provides three important capabilities:
@@ -42,7 +42,7 @@ FlowEHR extends the emphasis on developer ergonomics by providing an access-cont
 
 In addition to the feature store, FlowEHR provides an auditable model store for those models that graduate to production. These models are deployed in a decoupled manner using modern container technology and web APIs to allow outputs to be consumed by different services. Once again continuous monitoring guards against model drift and guides retraining decisions.[@davis2019]
 
-## Nudge randomisation vignette: Electroyte optimisation strategy to prevent new onset atrial fibrillation
+# Nudge randomisation vignette: Electroyte optimisation strategy to prevent new onset atrial fibrillation
 
 Consider the following worked example. We train an algorithm to optimise electrolyte supplementation in critically ill patients at risk of new onset atrial fibrillation (NOAF). We have already observed significant variation in the propensity of the clinical team to administer supplemental magnesium and potassium. Our algorithm evaluates the risk of NOAF in real-time based on existing electrolyte levels, medications, disease type, and the patient's co-morbidities. We have evidence that such supplementation is impactful for cardiac surgery patients[@gu2012] but no evidence that either our algorithm works nor that the existing evidence generalises to other patient populations. Our model is now used to drive a CDSS that operates in two layers. Firstly, where electrolytes are outside existing (evidence based guidelines) the CDSS makes a strong deterministic recommendation. Secondly, where electrolytes are within the window of the broader guideline but could be optimised, the CDSS makes a nudged randomised recommendation based on the model's prediction.
 
