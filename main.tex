@@ -17,10 +17,11 @@
 
 
 \def\keyFont{\fontsize{8}{11}\helveticabold }
-\def\firstAuthorLast{Sample {et~al.}} %use et al only if is more than 1 author
-\def\Authors{Steve Harris\,$^{1,2*}$ Tim Bonnici\,$^{1,2}$ Thomas Keen\,$^{1}$ Watjana Lilaonitkul\,$^{1}$ Mark J White\,$^{4}$ Nel Swanepoel\,$^{3}$ }
+\def\firstAuthorLast{Harris {et~al.}} %use et al only if is more than 1 author
+\def\Authors{Steve Harris\,$^{1,2*}$\textsuperscript{\textdagger} Tim Bonnici\,$^{1,2}$\textsuperscript{\textdagger} Thomas Keen\,$^{1}$ Watjana Lilaonitkul\,$^{1}$ Mark J White\,$^{4}$ Nel Swanepoel\,$^{3}$ }
 % Affiliations should be keyed to the author's name with superscript numbers and be listed as follows: Laboratory, Institute, Department, Organization, City, State abbreviation (USA, Canada, Australia), and Country (without detailed address information such as city zip codes or street names).
 % If one of the authors has a change of address, list the new address below the correspondence details using a superscript symbol and use the same symbol to indicate the author in the author list.
+
 
 \def\Address{$^{1}$Institute of Health Informatics, University College London, London, UK \\
 $^{2}$Department of Critical Care, University College London Hospital, London, UK  \\
@@ -53,6 +54,8 @@ $^{4}$Digital Healthcare, University College London Hospital, London, UK   }
 
 
 \maketitle
+\textsuperscript{\textdagger}These authors have contributed equally to this work and share first authorship\\
+
 \begin{abstract}
 
 %%% Leave the Abstract empty if your article does not require one, please see the Summary Table for full details.
@@ -67,13 +70,13 @@ $^{4}$Digital Healthcare, University College London Hospital, London, UK   }
 \end{abstract}
 
 % \markdownInput{01-main.md}
-\markdownInput{01-intro.md}
-\markdownInput{02-real-world-development.md}
-\markdownInput{03-ml-ops.md}
-\markdownInput{04-responsible-ai.md}
-\markdownInput{05-implementation.md}
-\markdownInput{06-continuous-evaluation.md}
-\markdownInput{08-discussion.md}
+% \markdownInput{01-intro.md}
+% \markdownInput{02-real-world-development.md}
+% \markdownInput{03-ml-ops.md}
+% \markdownInput{04-responsible-ai.md}
+% \markdownInput{05-implementation.md}
+% \markdownInput{06-continuous-evaluation.md}
+% \markdownInput{08-discussion.md}
 
 
 
@@ -111,21 +114,19 @@ The views expressed in this publication are those of the author(s) and not neces
 
 \begin{figure}[h!]
 \begin{center}
-\includegraphics[width=10cm]{figs/emap.png}% This is a *.eps file
+\includegraphics[width=10cm]{assets/emap.png}% This is a *.eps file
 \end{center}
 \caption{ 
-Our real-world development is performed on the  Experimental Medicine Application Platform (EMAP). EMAP is a clinical laboratory within which ML4H researchers can iteratively build, test and gather feedback from the bedside. It unifies the data and the tools for off-line and online development of ML4H models. In brief, EMAP builds a patient orientated SQL database from HL7 version 2 (HL7v2) messages that are being exchanged between hospital systems. HL7v2 messages are ubiquitous in health care, and the \textit{de facto} standard for internal communication.
-}\label{fig:1}
+Our real-world development is performed on the  Experimental Medicine Application Platform (EMAP). EMAP is a clinical laboratory within which ML4H researchers can iteratively build, test and gather feedback from the bedside. It unifies the data and the tools for off-line and online development of ML4H models. In brief, EMAP builds a patient orientated SQL database from HL7 version 2 (HL7v2) messages that are being exchanged between hospital systems. HL7v2 messages are ubiquitous in health care, and the \textit{de facto} standard for internal communication. }\label{fig:1}
 \end{figure}
 
 
 \begin{figure}[h!]
 \begin{center}
-\includegraphics[width=15cm]{figs/flowehr.png}
+\includegraphics[width=15cm]{assets/flowehr.png}
 \end{center}
 \caption{
-Our ML-Ops platform is called FlowEHR. Moving from left to right across the figure, the system monitors raw input data including checks for distribution shift, builds features with testable and quality controlled code, makes those features available to for both training and predictions to avoid train/serve skew, and maintains an auditable and monitored model repository.
-}\label{fig:2}
+Our ML-Ops platform is called FlowEHR. Moving from left to right across the figure, the system monitors raw input data including checks for distribution shift, builds features with testable and quality controlled code, makes those features available to for both training and predictions to avoid train/serve skew, and maintains an auditable and monitored model repository.}\label{fig:2}
 \end{figure}
 
 %%% If you are submitting a figure with subfigures please combine these into one image file with part labels integrated.
