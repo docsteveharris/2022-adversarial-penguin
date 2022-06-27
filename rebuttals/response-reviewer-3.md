@@ -1,10 +1,12 @@
+# Independent Review Report, Reviewer 3
+
 > Summary: I congratulate the authors on writing a wonderful overview on how hospitals can reach the digital maturity to deploy machine learning algorithms to support clinical decision making. The authors describe 5 major pillars that form a Clinical Deployment Environment. The figures also provide readers an idea of the major (and many) components that are necessary to erect a real-world CDEs. Finally, the paper discusses phased trials for testing ML algorithms.  
 
 Thank you for these comments. This was exactly our aim: to provide an schematic overview of the steps that will be required to reach digital maturity given our own experience.
   
 ## Major:
   
-1. I am confused what the terminology “code-to-data” means exactly. The authors never really provide a definition of what it means to reverse the typical setup of “data-to-code”. My first impression was that it meant the ML team would write code that would generate data. However, this does not seem to be the message of the first pillar. Instead, the message seems to be that there should be infrastructure for accessing live clinical data without harming the live clinical system. Please remove/replace this terminology to avoid reader confusion.  
+1. I am confused what the terminology "code-to-data" means exactly. The authors never really provide a definition of what it means to reverse the typical setup of "data-to-code". My first impression was that it meant the ML team would write code that would generate data. However, this does not seem to be the message of the first pillar. Instead, the message seems to be that there should be infrastructure for accessing live clinical data without harming the live clinical system. Please remove/replace this terminology to avoid reader confusion.  
 
 *We have edited the text to make this clearer. In brief, Guinney et al coined the phrase 'model to data' (ref below) to describe an inversion of the concept of data sharing to improve confidentiality. Here the model (code) is imported to the source data environment rather than source data being shared with external teams. Confidentialty and privacy improves because data is not copied and shared. We take this further and argue that 'data-to-code' ('data to modeler' in their parlance) is flawed because of the separation it imposes between the modellers and the end users.*
 
@@ -17,16 +19,16 @@ Thank you for these comments. This was exactly our aim: to provide an schematic 
 > ML4H interventions are virtual not physical, and must act by altering the behaviour of clinicians by providing insights for better decisions. As such, perfect information provided to the wrong person, or at the wrong moment, cannot be impactful. This first pillar of the CDE is the equivalent of an *internal* TRE *within* the healthcare institution.[@guinney2018] 
 
 
-Reference: Guinney J, Saez-Rodriguez J. Alternative models for sharing confidential biomedical data. Nat Biotechnol. 2018 May;36(5):391–2. 
+Reference: Guinney J, Saez-Rodriguez J. Alternative models for sharing confidential biomedical data. Nat Biotechnol. 2018 May;36(5):391-2. 
 
   
-2. The second pillar describes a team in the hospital for ML-Ops. This idea has been described in a number of papers, including Cosgrif 2020, Eaneff 2020, and Feng 2022. These papers have drawn parallels to existing infrastructure in the hospital to show that the idea of MLOps is not foreign and to bring urgency and relevance. For instance, Feng 2022 describes interesting parallels between hospital Quality Improvement units and ML-Ops team (they called this an AI-QI team). Eaneff 2020 refers to such teams as “algorithm stewards” to draw links to the concept of “hospital stewards” that is well-understood in the clinical space. I think the case for Pillar 2 would be stronger if the authors mention these connections.  
+2. The second pillar describes a team in the hospital for ML-Ops. This idea has been described in a number of papers, including Cosgrif 2020, Eaneff 2020, and Feng 2022. These papers have drawn parallels to existing infrastructure in the hospital to show that the idea of MLOps is not foreign and to bring urgency and relevance. For instance, Feng 2022 describes interesting parallels between hospital Quality Improvement units and ML-Ops team (they called this an AI-QI team). Eaneff 2020 refers to such teams as "algorithm stewards" to draw links to the concept of "hospital stewards" that is well-understood in the clinical space. I think the case for Pillar 2 would be stronger if the authors mention these connections.  
 
 Thank you. These references were enormously helpful, and we have included them in the text for Section 2.
 
 > Others have made similar proposals and labelled this as "algorithmic stewardship" or "AI-QI".[@eaneff2020;@feng2022] 
 
-3. Recent work have questioned the value of model explainability, particularly because many explainability methods exhibit flaws. See Ghassemi, Oakden-Rayner, and Beam 2021 and [https://arxiv.org/abs/2202.01602](https://arxiv.org/abs/2202.01602), as well as references within. I think the recommendation for model explainability should be qualified with this fact that the current explainability methods leave much to be desired.  
+3. Recent work have questioned the value of model explainability, particularly because many explainability methods exhibit flaws. See Ghassemi, Oakden-Rayner, and Beam 2021 and [https://arxiv.org/abs/2202.01602](https://arxiv.org/abs/2202.01602), as well as references within. I think the recommendation for model explainability should be qualified with this fact that the current explainability methods leave much to be desired.  
 
 - [ ] TODO:https://github.com/docsteveharris/2022-adversarial-penguin/issues/2
   
@@ -43,7 +45,7 @@ Thank you. These references were enormously helpful, and we have included them i
 - [ ] TODO: https://github.com/docsteveharris/2022-adversarial-penguin/issues/4
 <!-- same issue as above -->
   
-7. It is very interesting that the authors were able to implement continuous model evaluation using encouragement-based randomization within their hospital infrastructure. It would be useful for the authors to provide additional explanations on the ethical considerations and why randomization without consent is justified. The authors should also highlight the complexity of estimating the ML model’s impact in encouragement designs due to selection bias and noncompliance: see e.g. Barnard 2011 and Frangakis et al 2002.  
+7. It is very interesting that the authors were able to implement continuous model evaluation using encouragement-based randomization within their hospital infrastructure. It would be useful for the authors to provide additional explanations on the ethical considerations and why randomization without consent is justified. The authors should also highlight the complexity of estimating the ML model's impact in encouragement designs due to selection bias and noncompliance: see e.g. Barnard 2011 and Frangakis et al 2002.  
 
 Thank you. We have added the following sentence that signposts some of the literature in this field. The argument is best expressed by the following quote from the Nuffield Trust Seminar (Scobie et al), but is clearly complex and not likely to always prevail (Meyer et al)
 
@@ -74,7 +76,7 @@ Conclusion Paragraph 4
 
 > They fundamentally are an argument for a professionalisation of ML4H, and a caution against the 'get-rich quick' headlines in the popular and scientific press.[@bunz2022a]
   
-10. Figure 1 has a lot of components, and it is not clear what all of the components do. Please expand the caption to explain the major components in the figure. For instance, what is the “immutable data store” versus the “user data store”? What is the “message queue” vs the “message reader”? Also, what value add does the reporting DB offer over the live EHR?  
+10. Figure 1 has a lot of components, and it is not clear what all of the components do. Please expand the caption to explain the major components in the figure. For instance, what is the "immutable data store" versus the "user data store"? What is the "message queue" vs the "message reader"? Also, what value add does the reporting DB offer over the live EHR?  
 
 Thank you. We have added a substantial paragraph (below) to the caption and leverage the small numbers (1-5) to explain the process. We'd appreciate your and other reviewers advice whether this should remain in the main text or move to the ESM where we have also further expaned the description of data flows in EMAP.
 
