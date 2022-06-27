@@ -29,6 +29,25 @@ Most researchers expect to access data as flat tables, or from a relational data
 
 [^1]:	A typical set-up would see the team run a Jupyter Lab server within a docker container on that machine with shared file access to permit collaboration between team members. The ML4H researcher would work from this environment using separately managed credential to access live and static data stores. An application developer would orchestrate dockerised applications as needed to support the researcher. These might include web applications to return the model results directly to the clinical team for evaluation, or a services that would provide a suitable API for the results to be called from the EHR. This delegated responsibility strikes a balance between security, and a responsive development environment. 
 
+# EMAP data flows
+
+1.  An additional interface is connected to the hospital HL7 integration engine that consumes a subset of all messages.
+2.  These messages are copied to a PostgreSQL database called the Immutable Data Store (IDS). Each raw message is stored with a unique message identifier and a small amount of metadata (e.g. message source, message type, message timestamp). With the IDS, it becomes possible to replay messages from any point in time, and therefore rebuild at will any downstream structures.
+
+3.  The **message-reader** processes the live messages as they appear in the IDS. It converts each message to an in-house interchange format that is coded as a Java package involving a set of serialisable Java classes, serialised test messages for integration and system testing and helper methods for testing. The format has been designed to formalise custom HL7 implementation semantics into use-specific fields, allowing the processing of these messages downstream to be ignorant of HL7.
+
+4.  Separately, a **table-reader** performs the same job as the message-reader but working from one or more databases rather than the message store. This permits access to historical data that was shared prior to the \"go-live\" date of any particular feed. It also allows ingestion of data that is not yet being shared through the integration engine. Both the message-reader and the table-reader convert to the same interchange format.
+
+5.  Messages, in the interchange format, are batched and sent to an appropriate queue managed by a RabbitMQ server. Priority is given to messages originating with the live stream. Each queue has a maximum number of messages that are allowed, and the services publishing to the queues implement an exponential back off policy to limit the amount of disk space used by the queues.
+
+6.  A **event-processor** receives and processes messages from the RabbitMQ server. Processing involves managing a set of identifiers that allows each data item from the message to be linked to a patient (via a medical record number \[MRN\]) and the healthcare encounter. Specific issues that are managed by the event-processor include:
+
+    1.  *Inferring context*: HL7 messages are normally sent with a single purpose: to notify an admission, or discharge, request a laboratory test or update a result. However, each message contains segments of contextual information including demographics, and context about that hospital encounter. This means that we can infer that a patient was admitted from a discharge message, or a test was ordered from a result message, and so on. We use this \"by stander\" information to construct as complete a view of the current and ongoing state of the hospital as possible.
+
+    2.  *Messages arriving out of order*: Messages will sometimes arrive out of order. For example, a discharge before an admission. The **event-processor** infers context where necessary to make sense of these situations, and then corrects and updates when prior information is made available at a later time.
+
+    3.  *Patients having more than one MRN*: Patients may inadvertently re-register with the hospital because sufficient information is not available to match to an existing record or because erroneous information blocks a match. The records will eventually be flagged for a merge, and the **event-processor** will both update the stored identifiers and maintain an audit record of the change.
+
 # ML-0ps design principles
 Our ML-Ops platform is named FlowEHR: a working prototype supports the deployment and maintenance of a handful of local operational models.[@King2022.03.07.22271999] FlowEHR supports the ingestion of live data from EMAP (above) alongside retrospective data from reporting data warehouses. FHIR will be supported once generally available. We augment the platform with external data sources (e.g. to provide population level priors or regional or national COVID data). The raw input data is automatically monitored and compared against expected distributions to defend against data drift and ensure first line data quality.
 
@@ -49,5 +68,8 @@ Consider the following worked example. We train an algorithm to optimise electro
 During the pilot phase the study might run with pre-emptive consent, but if the pilot demonstrates safety and acceptability (for the methodology rather than the intervention) then it justifiable to transition to opt-out consent. This allows the trial to scale, and treatment effects to be estimated as per any RCT with imperfect compliance.[@wilson2022]
 
 Here the nudge is directly linked to the treatment allocation via the CDSS, but randomised indirect nudges without CDSS are also possible.[@chen2022] These might alter how information and choice is presented within the EHR by altering the ordering of investigations in a pick list. Such approaches have already demonstrated efficacy for diagnostic, screening and monitoring test orders.[@main2010; @santanna2021a]
+
+
+
 
 
