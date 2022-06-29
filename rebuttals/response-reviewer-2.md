@@ -29,6 +29,20 @@ I might suggest omitting or significantly abbreviating this section, which could
 https://github.com/docsteveharris/2022-adversarial-penguin/issues/5
   
 2. Some areas of the prose could benefit from increased specificity and/or clarity. One of the challenges in the healthcare data science space is striking the right balance of technical language to meet a readership with different levels of familiarity to clinical medicine, coding/development, and operations. Some areas of the prose - e.g., lines 63-67 - skew a bit heavy into the data science jargon and might benefit from additional explanations or a bit less jargon. It may be worth the authors having a colleague with less technical familiarity provide some informal copy-editing to help with readability for an audience of varying levels of expertise.  
+
+Thank you. This was helpful. I have asked two colleagues to separately proof the manuscript. They have made a series of small stylistic changes that I have incorporated into the manuscript.
+
+e.g. lines 63-67
+
+Before:
+
+> Given the sensitive nature of health data, these initiatives depend on expanding investment into Trusted Research Environments (TRE). [@2021c] Data flows from source (primary, secondary, social care and elsewhere) to a single secure landing zone where research teams write the code to link, clean and analyse the data. The insights return to the bedside through clinical guidelines and policy. This offline '_data-to-code_' approach is also the dominant design pattern in ML4H projects but is fundamentally flawed.
+
+After
+
+> Given the sensitive nature of health data, these programmes depend on Data Safe Havens (also known as Trusted Research Environments [TRE]). [@2021c] TREs are an example of 'data-to-modeler' (DTM) designs where source data (from primary, secondary, and social care) **moves to** a separate, secure landing zone. Here research teams link, clean and analyse the data. Their insights eventually return to the bedside through clinical guidelines and policy. In ML4H, DTM is also the dominant design pattern but is fundamentally flawed.
+
+A detailed diff of these changes is available [here](https://github.com/docsteveharris/2022-adversarial-penguin/pull/7)
   
 3. The supplement - especially items 1 and 2 - are very nice and highly practical. Some elements of these items could serve to address issue 2 above. Further, the ML-Ops design principles are particularly helpful explicating how code-to-data can address the limitations of data-to-code. I think it would be great if these could be a bit more prominent, ideally in the main manuscript.
   

@@ -4,6 +4,9 @@ The article proposes a design pattern, Clinical Deployment Environments (CDE) wi
   
 Other specific comments -
 - The language style preferred for Frontiers in Digital Health Articles is US English while the article uses the GB English style. A revision is needed to match the editorial requirements
+
+Thank you. I believe we have made the necessary changes.
+
 - A review of the state-of-the-art in the area may be included to highlight the gaps
 - A thorough check for sentences, the flow of the information, and grammar will help increase the readability of the article. A few of the comments and errors are highlighted in the attached file.
 - The diagram in Figure 1. does not match with the attached Image 1
