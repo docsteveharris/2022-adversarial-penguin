@@ -14,7 +14,7 @@ We describe the process of CDSS development by comparing and contrasting with th
 
 ## Pre-Clinical Phase
 
-In pre-clinical phase of drug development the objective is to identify candidate molecules which might make effective drugs. Evaluation is conducted in vitro. Metrics used to evaluate candidates, such binding affinity or other pharmacokinetic properties, describe the properties of the molecule. (ref: [https://www.sciencedirect.com/science/article/pii/S1359644617304695](https://www.sciencedirect.com/science/article/pii/S1359644617304695) ).
+In pre-clinical phase of drug development the objective is to identify candidate molecules which might make effective drugs. Evaluation is conducted in vitro. Metrics used to evaluate candidates, such as binding affinity or other pharmacokinetic properties, describe the properties of the molecule. (ref: [https://www.sciencedirect.com/science/article/pii/S1359644617304695](https://www.sciencedirect.com/science/article/pii/S1359644617304695) ).
 
 In the pre-clinical phase of CDSS development the objective is to identify candidate algorithms, comprising of input variables and model structures, which might make the core of an effective CDSS. Evaluation is conducted offline on de-identified datasets. Metrics used to evaluate candidates, such Area Under the Receiver Operator Curve (AUROC), the F1 score and calibration, describe the properties of the algorithm.(ref TRIPOD)
 
