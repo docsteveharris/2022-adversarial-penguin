@@ -1,15 +1,25 @@
 # Independent Review Report, Reviewer 1
 
 The article proposes a design pattern, Clinical Deployment Environments (CDE) with 05 principles (pillars). A design pattern is a general repeatable and implementable solution which is well demonstrated through the datasheet attached. My overall impression apart from a few specific comments is, that for each of the five principles (pillars), the problem description that they address may be clearly stated in the introduction section. The implementation example in the datasheet describes the first 02 pillars very clearly, however, an implementation example for the rest of the 03 pillars is missing. They should be included to prove the implementation. I would think that the Implementation science is a result of the first two pillars (i.e. RW-Dev and ML-Ops) and not essentially one of the pillars here. The explanation of 'Implementation Science' in the article also does not provide clear requirements for this pillar.
+
+**Response:** Thank you. We hadn't previously considered the analogy to formal software design patterns ("a design or implementation structure that achieves a particular purpose") but this exactly captures our purpose. The manuscript is a conceptual over-view, and the ESM contains the detail where we have made progress ourselves. Pillars 3 and 4 are the requirements where we have made the least progress but removing them from the manuscript because of this would send the wrong message. We include them to acknowlege their importance and provide a series of useful references.
+
+With regard to Implementation Science, we see this a distinct requirement that depends on Pillars 1 and 2 but is not captured by them. Indeed, it requires different personnel and different methodology. In most instances we imagine they will deliver their impact through some of form of passive (choice architecture) or active (interruptive alerts) decision support. 
+
+We have revised Section 4 to this end.
+
+> Unlike medications, algorithms can only impact health by influencing the behaviour of clinicians and patients. This corresponds to the second (T2) arm of translational medicine: implementation science.[@woolf2008b] A well designed, safe, and responsible AI algorithm may still be ineffective if it does not reach a modifiable target on the clinical pathway.[@the2021] *In most instances, this will be via a modification of the choice architecture (passive)[@halpern2018; @main2010] or via interruptive alerts (active) embedded in the EHR.[@main2010]* Effective implementation requires a multi-disciplinary approach including human-computer interaction, behavioural science, and qualitative analysis.[@sendak2020] 
+
   
 Other specific comments -
+
 - The language style preferred for Frontiers in Digital Health Articles is US English while the article uses the GB English style. A revision is needed to match the editorial requirements
 
-Thank you. We have converted converted the article to Word, and applies the US American spell check and grammar, and then converted back to Latex.
+**Response:** Thank you. We have converted converted the article to Word, and applies the US American spell check and grammar, and then converted back to Latex.
 
 - A review of the state-of-the-art in the area may be included to highlight the gaps
 
-Thank you. We have added several new references. 
+**Response:** Thank you. We have added several new references. 
 
 General 
 
@@ -17,17 +27,11 @@ General
 2. Eaneff S, Obermeyer Z, Butte AJ. The Case for Algorithmic Stewardship for Artificial Intelligence and Machine Learning Technologies. JAMA. 2020 Oct 13;324(14):1397–8. 
 3. Lee CS, Lee AY. Clinical applications of continual learning machine learning. The Lancet Digital Health. 2020 Jun 1;2(6):e279–81. 
 
-
-Specific
-<!-- TODO -->
-
-
-
-
+These are alongside additional references in Section 3 (AI safety), and Section 4 (Implementation).
 
 - A thorough check for sentences, the flow of the information, and grammar will help increase the readability of the article. A few of the comments and errors are highlighted in the attached file.
 
-Thank you. We have corrected as follows
+**Response:** Thank you. We have corrected as follows
 1. Highlight [page 3]:* and aims to answer for ML4H the same challenge that translational medicine brought to bear for drug discovery *and Note [page 3]:* The sentence looks grammatically incomplete
 
 **Re-written**:
@@ -38,7 +42,7 @@ Thank you. We have corrected as follows
 
 **Note**
 
-This was defined in paragraph 1 of Section 4.
+**Response:** This was defined in paragraph 1 of Section 4.
 
 > This corresponds to the second (T2) arm of translational medicine: implementation science.[@woolf2008b] 
 
@@ -61,7 +65,7 @@ This was defined in paragraph 1 of Section 4.
 
 7. Highlight [page 10]:* where software is (not as) a medical device *and Note [page 10]:* Do you mean Software as Medical Device?
 
-No. We were attempting to point out that where software is within a medical device (e.g. a cardiac pacemaker) then we already have a good regulatory framework. But because ML4H will be deployed in less controlled and varying environment (the EHR) then we need a new approach.
+**Response:** No. We were attempting to point out that where software is within a medical device (e.g. a cardiac pacemaker) then we already have a good regulatory framework. But because ML4H will be deployed in less controlled and varying environment (the EHR) then we need a new approach.
 
 8. *Strikeout [page 10]:* create
 
@@ -74,9 +78,9 @@ I'm not sure if I understand. We have uploaded 2 copies of each diagram, and in 
 - Suggest moving the figures as part of the datasheet where EMAP and FlowEHR are explained instead of keeping them in the main article
 - An overall depiction of CDE and its pillars may be useful
 
-We're happy to take editorial guidance on this. Our inclination is to include the detailed diagrams in the main text and to leave the textual and more technical descriptions of Pillars 1 and 2 in the ESM. We think this keeps the main article readable as an overall 'sketch' but allows the interested reader to obtain further detail. To this end (as per Reviewer 3), we have added extended captions rather than extend the body text.
+**Response:** We're happy to take editorial guidance on this. Our inclination is to include the detailed diagrams in the main text and to leave the textual and more technical descriptions of Pillars 1 and 2 in the ESM. We think this keeps the main article readable as an overall 'sketch' but allows the interested reader to obtain further detail. To this end (as per Reviewer 3), we have added extended captions rather than extend the body text.
 
 - Datasheet, Page 2, Section 1.4.2, "... aggregation. (201, 2018) Flat (bulk) FHIR is not mature, nor designed for live interactions.(202, 2021)..." : Please update the references. They are not numbered in the bibliography and full information is missing.
 
-Thank you. These were internet (web) references, and we have corrected the missing details.
+**Response:** Thank you. These were internet (web) references, and we have corrected the missing details.
 
