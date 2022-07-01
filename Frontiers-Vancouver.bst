@@ -616,7 +616,9 @@ FUNCTION {format.title}
   "title" bibinfo.check
   duplicate$ empty$ 'skip$
     {
-      select.language
+      % remove language from journal title formatting
+      % by commenting out function below
+      % select.language
     }
   if$
 }
