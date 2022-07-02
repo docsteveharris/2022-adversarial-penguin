@@ -1,3 +1,4 @@
 *.plist
 *.sublime-workspace
 *.DS_Store
+*.drawio.bkp
