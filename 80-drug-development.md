@@ -8,7 +8,7 @@ Phase 2 drug trials involve recruitment of small numbers patients with the disea
 
 Phase 3 drug trials involve the recruitment of large numbers of patients to determine whether a drug is effective in improving patient outcomes. The gold standard of trial design is a double-blinded randomised controlled trial (RCT). Phase 3 ML4H trials will require integration of data from multiple centres for algorithms acting on specific decisions but inevitably adapted to their local data environment.
 
-The phases of drug development are not meant to be matched 1:1 to the pillars of the CDE described here, but the parallel is drawn to hightlight the effort necessary to see ML4H have an impact on the clinical and operatational decision making in the workplace.
+The phases of drug development are not meant to be matched 1:1 to the pillars of the CDE described here: in fact, our argument for 'real-world' _development_ deliberately seeks to merge the steps. But the parallel is drawn to highlight the effort necessary to see ML4H have an impact on the clinical and operatational decision making in the workplace. Heretofore this effort has been hugely underestimated.
 
 
 
