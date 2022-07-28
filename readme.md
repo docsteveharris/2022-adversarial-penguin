@@ -20,3 +20,15 @@ Don't use ...
 - [Acceptance notes](https://www.frontiersin.org/my-frontiers/inbox)
 - [Frontiers Article Types](https://www.frontiersin.org/journals/digital-health/sections/health-informatics#article-types) 
 - [Author instructions](https://www.frontiersin.org/about/author-guidelines)
+
+## Log
+
+### 2022-07-28
+compiling to word for manuscript submission
+
+1. copy paste all markdown files into single body.md
+2. then `pandoc body.md -o body.tex -C --bibliography refs.bib --natbib` to convert to .tex
+3. then with new `main-allin1.tex` that uses `\include{body.tex` use pandoc one more time ` pandoc main-allin1.tex -C --bibliography refs.bib -o main-allin1-refs.docx --csl frontiers-medical-journals.csl`
+
+then hand edit because the shared first authorship and corresponding author details don't work
+so the final file becomes `main-allin1+refs+authors.docx`
